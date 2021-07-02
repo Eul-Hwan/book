@@ -88,9 +88,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // });
 
 // 조건문 p27
-Route::get('/', function () {
-    $items = ['apple', 'banana', 'tomato'];
-    // $items = [];
+// Route::get('/', function () {
+//     $items = ['apple', 'banana', 'tomato'];
+//     // $items = [];
 
-    return view('welcome1', ['items' => $items]);
-});
+//     return view('welcome1', ['items' => $items]);
+// });
+
+// 컨트롤러 p60
+Route::get('/', 'WelcomeController@index');
+
+Route::resource('/articles', 'ArticlesController');
