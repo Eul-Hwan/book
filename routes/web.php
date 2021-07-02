@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -25,9 +25,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //     return view('welcome');
 // });
 
-Route::get('/', function() {
-    return '<h1>Hellow IU</h1>';
-});
+// Route::get('/', function() {
+//     return '<h1>Hellow IU</h1>';
+// });
 
 // 1.url에서 사용한 파라미터를 view를 통해서 화면에 출력
 // Route::get('/{foo}', function ($foo) {
@@ -80,9 +80,17 @@ Route::get('/', function() {
 // });
 
 // 데이터 바인딩 3. view() 함수 이용 방법
+// Route::get('/', function () {
+//     return view('welcome1', [
+//         'name' => 'Foo',
+//         'greeting' => '안냥?',
+//     ]);
+// });
+
+// 조건문 p27
 Route::get('/', function () {
-    return view('welcome1', [
-        'name' => 'Foo',
-        'greeting' => '안냥?',
-    ]);
+    $items = ['apple', 'banana', 'tomato'];
+    // $items = [];
+
+    return view('welcome1', ['items' => $items]);
 });
