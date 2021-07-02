@@ -51,12 +51,38 @@ Route::get('/', function() {
 // })->where('foo', '[0-9a-zA-Z]{3}');
 
 // 라우트에 이름을 부여하기
-Route::get('/',[
-    'as' => 'home',
-    function () {
-        return '제이름은 "home" 입니다.';
-    }
-]);
-Route::get('/home', function() {
-    return redirect(route('home'));
+// Route::get('/',[
+//     'as' => 'home',
+//     function () {
+//         return '제이름은 "home" 입니다.';
+//     }
+// ]);
+// Route::get('/home', function() {
+//     return redirect(route('home'));
+// });
+
+// 뷰 반환 (resources/errors/503.blade.php 파일을 만들어야 한다.)
+// Route::get('/', function() {
+//     return view('errors.503');
+// });
+
+// 데이터 바인딩 1. with() 메서드 이용 방법
+// Route::get('/', function () {
+//     return view('welcome1')->with('name', 'Foo');
+// });
+
+// 데이터 바인딩 2. with() 메서드에서 배열을 이용하는 방법
+// Route::get('/', function () {
+//     return view('welcome1')->with([
+//         'name' => 'Foo',
+//         'greeting' => '안녕하세요?',
+//     ]);
+// });
+
+// 데이터 바인딩 3. view() 함수 이용 방법
+Route::get('/', function () {
+    return view('welcome1', [
+        'name' => 'Foo',
+        'greeting' => '안냥?',
+    ]);
 });
