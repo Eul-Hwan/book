@@ -1,0 +1,62 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', function() {
+    return '<h1>Hellow IU</h1>';
+});
+
+// 1.url에서 사용한 파라미터를 view를 통해서 화면에 출력
+// Route::get('/{foo}', function ($foo) {
+//     return $foo;
+// });
+
+// 2.url에서 사용한 파라미터를 view를 통해서 화면에 출력후 파라미터를 선택적으로 받을때에는 ?를 사용한다.
+// Route::get('/{foo?}', function ($foo) {
+//     return $foo;
+// });
+
+// 1.정규 표현식을 이용하여 패턴을 3자리로 강제 3자리 이상 사용시 ex) nice는 404 not found
+// Route::pattern('foo', '[0-9a-zA-Z]{3}');
+// Route::get('/{foo?}', function($foo = 'bar'){
+//     return $foo;
+// });
+
+// 2.정규 표현식을 이용하여 패턴을 3자리로 강제 3자리 이상 사용시 ex) nice는 404 not found. where() 메서드를 이용
+// Route::get('/{foo?}', function($foo = 'bar'){
+//     return $foo;
+// })->where('foo', '[0-9a-zA-Z]{3}');
+
+// 라우트에 이름을 부여하기
+Route::get('/',[
+    'as' => 'home',
+    function () {
+        return '제이름은 "home" 입니다.';
+    }
+]);
+Route::get('/home', function() {
+    return redirect(route('home'));
+});
