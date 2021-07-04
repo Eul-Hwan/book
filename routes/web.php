@@ -21,9 +21,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 // Route::get('/', function() {
 //     return '<h1>Hellow IU</h1>';
@@ -96,6 +96,35 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // });
 
 // 컨트롤러 p60
-Route::get('/', 'WelcomeController@index');
+// Route::get('/', 'WelcomeController@index');
+// Route::resource('/articles', 'ArticlesController');
 
-Route::resource('/articles', 'ArticlesController');
+// 라우팅 파일만으로 사용자 인증을 구현 p74
+// Route::get('/', 'WelcomeController@index');
+// Route::get('auth/login', function(){
+//     $credentials = [
+//         'email' => 'john@example.com',
+//         // 'password' => 'password'
+//         'password' => 'secret'
+//     ];
+
+//     if (! auth()->attempt($credentials)){
+//         return '로그인 정보가 정확하지 않습니다.';
+//     }
+
+//     return redirect('protected');
+// });
+// Route::get('protected', function(){
+//     dump(session()->all());
+
+//     if (! auth()->check()) {
+//         return '누구세요?';
+//     }
+
+//     return '어서오세요 ' . auth()->user()->name;
+// });
+// Route::get('auth/logout', function() {
+//     auth()->logout();
+
+//     return '또 봐요~!';
+// });
