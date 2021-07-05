@@ -95,6 +95,7 @@ Route::get('/', function () {
 //     return view('welcome1', ['items' => $items]);
 // });
 
+
 // 컨트롤러 p60
 // Route::get('/', 'WelcomeController@index');
 // Route::resource('/articles', 'ArticlesController');
@@ -128,3 +129,14 @@ Route::get('/', function () {
 
 //     return '또 봐요~!';
 // });
+
+
+
+// 즉시 로드 p.100
+Route::resource('articles', 'ArticlesController');
+
+// N+1 쿼리 문제 p.102
+// DB::listen(function ($query){
+//     var_dump($query->sql);
+// });
+
