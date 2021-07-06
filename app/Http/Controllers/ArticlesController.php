@@ -32,9 +32,15 @@ class ArticlesController extends Controller
         // $articles->load('user'); //user() 관계가 필요 없는 다른 로직 수행
 
         // 페이지네이터 p.104
+        // $articles = Article::latest()->paginate(3);
+
+        // 뷰 디버깅 p.141
         $articles = Article::latest()->paginate(3);
+        dd(view('articles.index', compact('articles'))->render());
 
         return view('articles.index', compact('articles'));
+
+
     }
 
     /**
@@ -179,7 +185,18 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
+        // 전역 예외 처리기 p.130
+        // echo $foo;
         // return __METHOD__ . '은(는) 다음 기본 키를 가진 Article 모델을 조회합니다.:' . $id;
+
+        // // 실용적인 예외 처리 p.133 (서버가 작동을 하지 않음)
+        // $article = Article::findOrFail($id);
+        // return $article->toArray();
+
+        // 디버깅 dd()도우미 함수 p.140
+        $article = Article::findOrFail($id);
+        dd($article);
+        return $article->toArray();
     }
 
     /**
