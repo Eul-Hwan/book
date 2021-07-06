@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use App\Events\ArticlesEvent;
 use App\Http\Requests\ArticlesRequest;
+use App\Listeners\ArticlesEventListener;
 use Illuminate\Support\Facades\Validator;
 
 class ArticlesController extends Controller
@@ -112,6 +114,51 @@ class ArticlesController extends Controller
 
 
     // 폼 리퀘스트 클래스 이용 p.116
+    // public function store(ArticlesRequest $request)
+    // {
+    //     $article = User::find(1)->articles()->create($request->all());
+
+    //     if (! $article) {
+    //         return back()->with('flash_message', '글이 저장되지 않았습니다.')->withInput();
+    //     }
+
+    //     return redirect(route('articles.index'))->with('flash_message', '작성하신 글이 저장되었습니다.');
+    // }
+
+
+    // 이벤트 시스템 p.119
+    // public function store(ArticlesRequest $request)
+    // {
+    //     $article = User::find(1)->articles()->create($request->all());
+
+    //     if (! $article) {
+    //         return back()->with('flash_message', '글이 저장되지 않았습니다.')->withInput();
+    //     }
+
+    //     var_dump('이벤트를 던집니다.');
+    //     event('article.created', [$article]);
+    //     var_dump('이벤트를 던졌습니다.');
+
+    //     // return redirect(route('articles.index'))->with('flash_message', '작성하신 글이 저장되었습니다.');
+    // }
+
+
+    // 이벤트 클래스 p.123
+    // public function store(ArticlesRequest $request)
+    // {
+    //     $article = User::find(1)->articles()->create($request->all());
+
+    //     if (! $article) {
+    //         return back()->with('flash_message', '글이 저장되지 않았습니다.')->withInput();
+    //     }
+
+    //     dump('이벤트를 던집니다.');
+    //     event('article.created', [$article]);
+    //     dump('이벤트를 던졌습니다.');
+    // }
+
+
+    //
     public function store(ArticlesRequest $request)
     {
         $article = User::find(1)->articles()->create($request->all());
@@ -120,7 +167,8 @@ class ArticlesController extends Controller
             return back()->with('flash_message', '글이 저장되지 않았습니다.')->withInput();
         }
 
-        return redirect(route('articles.index'))->with('flash_message', '작성하신 글이 저장되었습니다.');
+        event(new ArticlesEvent($article));
+        // return redirect(route('articles.index'))->with('flash_message', '작성하신 글이 저장되었습니다.');
     }
 
     /**
