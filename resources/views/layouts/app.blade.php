@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- TailwindCSs -->
-    <link rel="stylesheet" href="{{ mix('css/tailwind.css') }}">
+    {{-- <link rel="stylesheet" href="{{ mix('css/tailwind.css') }}"> --}}
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -79,9 +79,14 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        @if (session()->has('flash_message'))
+            <div class="alert alert-info" role="alert">
+                {{ session('flash_message') }}
+            </div>
+        @endif
+        {{-- <main class="py-4"> --}}
             @yield('content')
-        </main>
+        {{-- </main> --}}
     </div>
 </body>
 </html>
