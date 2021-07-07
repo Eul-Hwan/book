@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Article;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -146,3 +148,18 @@ Route::resource('articles', 'ArticlesController');
 //     var_dump('이벤트를 받았습니다. 받은 데이터(상태)는 다음과 같습니다.');
 //     var_dump($article->toArray());
 // });
+
+
+// 이메일 보내기 메일 메시지 만들기 p.146
+Route::get('mail', function(){
+    $article = Article::with('user')->find(1);
+
+    return Mail::send(
+        'emails.articles.created',
+        compact('article'),
+        function ($message) use ($article) {
+            $message->to('th2eul@gamil.com');
+            $message->subject('새 글이 등록되었습니다 -' . $article->title);
+        }
+    );
+});
