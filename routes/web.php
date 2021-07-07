@@ -150,16 +150,36 @@ Route::resource('articles', 'ArticlesController');
 // });
 
 
-// 이메일 보내기 메일 메시지 만들기 p.146
-Route::get('mail', function(){
-    $article = Article::with('user')->find(1);
+// 이메일 보내기 메일 메시지 만들기 p.146 (작동하지 않음)
+// Route::get('mail', function(){
+//     $article = Article::with('user')->find(1);
 
-    return Mail::send(
-        'emails.articles.created',
-        compact('article'),
-        function ($message) use ($article) {
-            $message->to('th2eul@gamil.com');
-            $message->subject('새 글이 등록되었습니다 -' . $article->title);
-        }
-    );
+//     return Mail::send(
+//         'emails.articles.created',
+//         compact('article'),
+//         function ($message) use ($article) {
+//             $message->to('th2eul@gamil.com');
+//             $message->subject('새 글이 등록되었습니다 -' . $article->title);
+//         }
+//     );
+// });
+
+// 마크다운 컴포넌트 사용하기 p.159
+Route::get('markdown', function(){
+    $text =<<<EOT
+# 마크다운 예제1
+
+이 문서는 [마크다운][1]으로 썼습니다. 화면에는 HTML로 변환되어 출력됩니다.
+
+## 순서 없는 목록
+
+- 첫 번째 항목
+- 두 번째 항목[^1]
+
+[1]: http://daringfireball.net/projects/markdown
+
+[^1]: 두 번째 항목_ http://google.com/ncr
+EOT;
+
+    return app(ParsedownExtra::class)->text($text);
 });

@@ -161,6 +161,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        // 라라벨 디버그바 p.161
+        // Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Package Service Providers...

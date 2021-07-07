@@ -10,6 +10,8 @@ use App\Http\Requests\ArticlesRequest;
 use App\Listeners\ArticlesEventListener;
 use Illuminate\Support\Facades\Validator;
 
+use function Psy\debug;
+
 class ArticlesController extends Controller
 {
     /**
@@ -194,9 +196,14 @@ class ArticlesController extends Controller
         // return $article->toArray();
 
         // 디버깅 dd()도우미 함수 p.140
+        // $article = Article::findOrFail($id);
+        // dd($article);
+        // return $article->toArray();
+
+        // 라라벨 디버그바 컴포넌트 사용
         $article = Article::findOrFail($id);
-        dd($article);
-        return $article->toArray();
+        debug($article->toArray());
+        return view('articles.show', compact('article')); // show.blade.php 파일이 없음
     }
 
     /**
