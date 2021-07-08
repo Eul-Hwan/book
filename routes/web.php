@@ -165,21 +165,28 @@ Route::resource('articles', 'ArticlesController');
 // });
 
 // 마크다운 컴포넌트 사용하기 p.159
-Route::get('markdown', function(){
-    $text =<<<EOT
-# 마크다운 예제1
+// Route::get('markdown', function(){
+//     $text =<<<EOT
+// # 마크다운 예제1
 
-이 문서는 [마크다운][1]으로 썼습니다. 화면에는 HTML로 변환되어 출력됩니다.
+// 이 문서는 [마크다운][1]으로 썼습니다. 화면에는 HTML로 변환되어 출력됩니다.
 
-## 순서 없는 목록
+// ## 순서 없는 목록
 
-- 첫 번째 항목
-- 두 번째 항목[^1]
+// - 첫 번째 항목
+// - 두 번째 항목[^1]
 
-[1]: http://daringfireball.net/projects/markdown
+// [1]: http://daringfireball.net/projects/markdown
 
-[^1]: 두 번째 항목_ http://google.com/ncr
-EOT;
+// [^1]: 두 번째 항목_ http://google.com/ncr
+// EOT;
+
+//     return app(ParsedownExtra::class)->text($text);
+// });
+
+// 모델 p.173
+Route::get('docs/{file?}', function($file = null){
+    $text = (new \App\Models\Documentation)->get($file);
 
     return app(ParsedownExtra::class)->text($text);
 });
