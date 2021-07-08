@@ -6,3 +6,10 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// 빌드 스크립트 수정 및 적용 p.197
+@import 'node_modules/font-awesome/scss/font-awesome';
+
+body {
+    background-color: #00FF00;
+}
