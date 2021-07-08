@@ -185,8 +185,11 @@ Route::resource('articles', 'ArticlesController');
 // });
 
 // 모델 p.173
-Route::get('docs/{file?}', function($file = null){
-    $text = (new \App\Models\Documentation)->get($file);
+// Route::get('docs/{file?}', function($file = null){
+//     $text = (new \App\Models\Documentation)->get($file);
 
-    return app(ParsedownExtra::class)->text($text);
-});
+//     return app(ParsedownExtra::class)->text($text);
+// });
+
+// 컨트롤러와 도우미 함수 p.178
+Route::get('docs/{file?}', 'DocsController@show');
