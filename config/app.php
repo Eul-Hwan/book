@@ -164,6 +164,9 @@ return [
         // 라라벨 디버그바 p.161
         // Barryvdh\Debugbar\ServiceProvider::class,
 
+        // 인터벤션 이미지 p.185
+        Intervention\Image\ImageServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
@@ -230,6 +233,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        // 인터벤션 이미지 p.185
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

@@ -193,3 +193,6 @@ Route::resource('articles', 'ArticlesController');
 
 // 컨트롤러와 도우미 함수 p.178
 Route::get('docs/{file?}', 'DocsController@show');
+
+// 이미지 응답 p.184
+Route::get('docs/images/{image}', 'DocsController@image')->where('image', '[\pL-\pN\._-]+-img-[0-9]{2}.png');
